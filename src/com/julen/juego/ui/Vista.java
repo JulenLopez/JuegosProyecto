@@ -5,6 +5,7 @@ import com.julen.juego.base.Juego;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.io.File;
 import javax.swing.border.TitledBorder;
 
 public class Vista extends JFrame {
@@ -15,9 +16,9 @@ public class Vista extends JFrame {
     public JLabel lRatingEdad;
     public JLabel lRating;
     public JLabel lPlataforma;
-    public JTextField txtSurvivalhorror;
-    public JTextField textField_1;
-    public JTextField textField_2;
+    public JTextField tfNombre;
+    public JTextField tfRatingEdad;
+    public JTextField tfRating;
     public JComboBox cbGenero1;
     public JComboBox cbGenero2;
     public JComboBox cbPlataforma;
@@ -27,6 +28,7 @@ public class Vista extends JFrame {
     public JButton btBorrar;
     public JButton btActualizar;
     public JButton btCancelar;
+    public JButton btBorrarTodo;
     public JScrollPane scrollPane;
     public JList<Juego> listaJuegos;
     public DefaultListModel<Juego> mListaJuegos;
@@ -58,21 +60,21 @@ public class Vista extends JFrame {
         lPlataforma.setBounds(30, 141, 64, 14);
         contentPane.add(lPlataforma);
 
-        txtSurvivalhorror = new JTextField();
-        txtSurvivalhorror.setHorizontalAlignment(SwingConstants.LEFT);
-        txtSurvivalhorror.setBounds(187, 38, 84, 20);
-        contentPane.add(txtSurvivalhorror);
-        txtSurvivalhorror.setColumns(10);
+        tfNombre = new JTextField();
+        tfNombre.setHorizontalAlignment(SwingConstants.LEFT);
+        tfNombre.setBounds(187, 38, 84, 20);
+        contentPane.add(tfNombre);
+        tfNombre.setColumns(10);
 
-        textField_1 = new JTextField();
-        textField_1.setBounds(185, 88, 86, 20);
-        contentPane.add(textField_1);
-        textField_1.setColumns(10);
+        tfRatingEdad = new JTextField();
+        tfRatingEdad.setBounds(185, 88, 86, 20);
+        contentPane.add(tfRatingEdad);
+        tfRatingEdad.setColumns(10);
 
-        textField_2 = new JTextField();
-        textField_2.setBounds(185, 113, 86, 20);
-        contentPane.add(textField_2);
-        textField_2.setColumns(10);
+        tfRating = new JTextField();
+        tfRating.setBounds(185, 113, 86, 20);
+        contentPane.add(tfRating);
+        tfRating.setColumns(10);
 
         cbGenero1 = new JComboBox();
         cbGenero1.setBounds(104, 63, 126, 20);
@@ -90,10 +92,13 @@ public class Vista extends JFrame {
         lImagen.setBorder(new TitledBorder(null, "Imagen", TitledBorder.CENTER, TitledBorder.TOP, null, Color.RED));
         lImagen.setBounds(376, 41, 97, 117);
         contentPane.add(lImagen);
+        lImagen.setIcon(new ImageIcon(System.getProperty("user.dir")+ File.separator+"imagenes"+File.separator+"fotoPorDefecto.jpg"));//Foto por defecto
+
 
         btNuevo = new JButton("Nuevo");
         btNuevo.setBounds(10, 188, 100, 23);
         contentPane.add(btNuevo);
+        btNuevo.setFocusPainted(true);
 
         btGuardar = new JButton("Guardar");
         btGuardar.setBounds(74, 227, 100, 23);
@@ -110,6 +115,10 @@ public class Vista extends JFrame {
         btCancelar = new JButton("Cancelar");
         btCancelar.setBounds(306, 227, 100, 23);
         contentPane.add(btCancelar);
+
+        btBorrarTodo = new JButton("Borrar todo");
+        btBorrarTodo.setBounds(494,239,100,20);
+        contentPane.add(btBorrarTodo);
 
         scrollPane = new JScrollPane();
         scrollPane.setBounds(477, 39, 141, 197);

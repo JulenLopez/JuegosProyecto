@@ -5,17 +5,18 @@ import com.julen.juego.base.Juego;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 //Aqui se crean los metodos. Y los momos
 public class Modelo {
 
-    ArrayList<Juego> juegos;
+    private HashMap<String,Juego> juegos;
 
     Modelo() throws IOException, ClassNotFoundException {
         if(new File("Juegos.txt").exists())//Compruebo si existe el fichero si este lo hace llamo al metodo de leer ficheros. Si no crea un nuevo arraylist y no hace falta crear el nuevo fichero se genera solo
             leerFich();
         else
-            juegos = new ArrayList<>();
+            juegos = new HashMap<>();
     }
 
 
@@ -45,8 +46,8 @@ public class Modelo {
         */
 
        ObjectInputStream desirializador = new ObjectInputStream(new FileInputStream("Juegos.txt"));
-       juegos = (ArrayList<Juego>) desirializador.readObject();
-
+       juegos = (HashMap<String, Juego>) desirializador.readObject();
+        desirializador.close();
     }
 
     public void eliminar(Juego juego) throws IOException {
@@ -56,13 +57,17 @@ public class Modelo {
 
     public void guardar(Juego juego) throws IOException {
 
-        juegos.add(juego);//Añado un objeto juego al ArrayList de juegos
+        juegos.put(juego.getNombre(), juego);//Añado un objeto juego al ArrayList de juegos
         escribirFich();//llamo al metodo de escribir en ficheros
 
     }
 
+    public void eliminarTodo() throws IOException {
+        juegos = new HashMap<>();//Reinicio el HashMap para borrar todó
+        escribirFich();
+    }
 
-    public ArrayList<Juego> getJuegos(int i){
-        return new ArrayList<Juego>((Collection<? extends Juego>) juegos.get(i));
+    public ArrayList<Juego> getJuegos(){
+        return new ArrayList<Juego>(juegos.values());
     }
 }
